@@ -7,6 +7,13 @@
     <title>Glory Meal Devotional - Daily Spiritual Inspiration</title>
     <meta name="description" content="Experience divine inspiration with Glory Meal Devotional - Daily spiritual guidance and prayers" />
     <meta name="author" content="Glory Meal Devotional" />
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+    <meta name="theme-color" content="#0d6efd">
+    <link rel="apple-touch-icon" href="{% static 'icons/icon-192x192.png' %}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Devotional">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -914,6 +921,11 @@ async function handleSubscribe(event) {
   }
 }
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("{% static 'service-worker.js' %}")
+    .then(reg => console.log('Service Worker registered', reg))
+    .catch(err => console.log('Service Worker failed', err));
+}
 
     </script>
   </body>
