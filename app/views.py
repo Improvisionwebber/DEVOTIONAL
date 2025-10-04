@@ -29,4 +29,17 @@ def subscribe_email(request):
             return JsonResponse({'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+from .models import PushSubscription
+
+@csrf_exempt
+def save_subscription(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        # Save subscription to DB
+        PushSubscription.objects.create(subscription=json.dumps(data))
+        return JsonResponse({"status": "success"})
+    return JsonResponse({"status": "error"}, status=400)
 
