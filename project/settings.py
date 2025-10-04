@@ -1,3 +1,4 @@
+import os
 """
 Django settings for project project.
 
@@ -69,7 +70,7 @@ TEMPLATES = [
     },
 ]
 STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
