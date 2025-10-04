@@ -1,0 +1,920 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glory Meal Devotional - Daily Spiritual Inspiration</title>
+    <meta name="description" content="Experience divine inspiration with Glory Meal Devotional - Daily spiritual guidance and prayers" />
+    <meta name="author" content="Glory Meal Devotional" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="Glory Meal Devotional - Daily Spiritual Inspiration" />
+    <meta property="og:description" content="Experience divine inspiration with Glory Meal Devotional - Daily spiritual guidance and prayers" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <style>
+      /* === RESET & BASE === */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        {% comment %} background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%); {% endcomment %}
+        color: #f5f5f5;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* === ANIMATIONS === */
+      @keyframes float {
+        0%, 100% { 
+          transform: translateY(0) translateX(0) rotate(0deg); 
+          opacity: 0.6; 
+        }
+        25% { 
+          transform: translateY(-30px) translateX(20px) rotate(90deg); 
+          opacity: 0.9; 
+        }
+        50% { 
+          transform: translateY(-60px) translateX(-15px) rotate(180deg); 
+          opacity: 0.7; 
+        }
+        75% { 
+          transform: translateY(-40px) translateX(30px) rotate(270deg); 
+          opacity: 0.8; 
+        }
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% {
+          box-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 50px rgba(212, 175, 55, 0.9), 0 0 80px rgba(255, 215, 0, 0.6), 0 0 100px rgba(184, 134, 11, 0.4);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -1000px 0;
+        }
+        100% {
+          background-position: 1000px 0;
+        }
+      }
+
+      @keyframes slide-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes highlight-pulse {
+        0%, 100% {
+          background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+          box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 215, 0, 0.3);
+          transform: scale(1);
+        }
+        50% {
+          background: linear-gradient(90deg, #ffed4e, #ffd700, #ffed4e);
+          box-shadow: 0 0 40px rgba(255, 215, 0, 0.9), inset 0 0 20px rgba(255, 215, 0, 0.5);
+          transform: scale(1.02);
+        }
+      }
+
+      @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes bounce-subtle {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* === HERO SECTION === */
+      .hero {
+        position: relative;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #2d2d2d 100%);
+        color: #ffd700;
+        padding: 80px 20px 50px 20px;
+        text-align: center;
+        border-bottom-left-radius: 80px;
+        border-bottom-right-radius: 80px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 0 100px rgba(255, 215, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .pastor-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid #ffd700;
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4);
+        margin: 0 auto 32px;
+        display: block;
+        animation: pulse-glow 3s infinite ease-in-out;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 144px;
+        height: 144px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+        border: 4px solid #ffd700;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
+        margin-bottom: 32px;
+        animation: pulse-glow 2s infinite ease-in-out;
+      }
+
+      .logo-text {
+        font-size: 3rem;
+        font-weight: 900;
+        font-family: 'Playfair Display', serif;
+        background: linear-gradient(135deg, #ffd700, #ffed4e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 900;
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 24px;
+        color: #ffd700;
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.8);
+        letter-spacing: -1px;
+      }
+
+      .hero h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: #d4af37;
+        opacity: 0.95;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      .hero p {
+        font-size: 1rem;
+        font-style: italic;
+        color: #e8d7a3;
+        opacity: 0.9;
+        margin-bottom: 48px;
+        font-weight: 300;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Floating Particles */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 215, 0, 0.4);
+        animation: float 12s infinite ease-in-out;
+        pointer-events: none;
+      }
+
+      .particle:nth-child(1) { width: 12px; height: 12px; left: 10%; top: 20%; animation-delay: 0s; }
+      .particle:nth-child(2) { width: 18px; height: 18px; left: 85%; top: 15%; animation-delay: 2s; }
+      .particle:nth-child(3) { width: 10px; height: 10px; left: 20%; top: 60%; animation-delay: 4s; }
+      .particle:nth-child(4) { width: 15px; height: 15px; left: 75%; top: 70%; animation-delay: 1s; }
+      .particle:nth-child(5) { width: 8px; height: 8px; left: 50%; top: 40%; animation-delay: 3s; }
+      .particle:nth-child(6) { width: 14px; height: 14px; left: 90%; top: 50%; animation-delay: 5s; }
+      .particle:nth-child(7) { width: 11px; height: 11px; left: 15%; top: 80%; animation-delay: 2.5s; }
+      .particle:nth-child(8) { width: 16px; height: 16px; left: 60%; top: 25%; animation-delay: 4.5s; }
+
+      /* === BUTTONS === */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 24px 48px;
+        font-size: 1.125rem;
+        font-weight: 700;
+        border-radius: 9999px;
+        border: 3px solid #ffd700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.3);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        color: #000;
+        animation: pulse-glow 2s infinite ease-in-out;
+      }
+
+      .btn-primary:hover {
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.6);
+        background: linear-gradient(135deg, #ffed4e 0%, #ffd700 100%);
+      }
+
+      .btn-primary:active {
+        transform: scale(0.98);
+      }
+
+      .btn-icon {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
+      }
+
+      .btn:hover .btn-icon {
+        transform: scale(1.1);
+      }
+
+      /* === CONTAINER === */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* === DEVOTIONAL CARDS === */
+      .card {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border-radius: 24px;
+        margin-bottom: 48px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.5s ease;
+        border: 2px solid rgba(255, 215, 0, 0.2);
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .card.visible {
+        animation: slide-up 0.6s ease-out forwards;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.3);
+        border-color: rgba(255, 215, 0, 0.5);
+      }
+
+      .card-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+        border-bottom: 3px solid #ffd700;
+      }
+
+      .card-header {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        padding: 32px 40px;
+        border-bottom: 3px solid #ffd700;
+      }
+
+      .card-header h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ffd700;
+        font-family: 'Playfair Display', serif;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.6);
+        margin: 0;
+      }
+
+      .card-content {
+        padding: 40px;
+      }
+
+      .card-content p {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        margin-bottom: 24px;
+        padding: 24px;
+        border-radius: 16px;
+        transition: all 0.5s ease;
+        background: rgba(0, 0, 0, 0.2);
+        color: #e8e8e8;
+        border-left: 4px solid transparent;
+      }
+
+      .card-content p:hover {
+        background: rgba(255, 215, 0, 0.05);
+        border-left-color: #ffd700;
+      }
+
+      .card-content p:last-child {
+        margin-bottom: 0;
+      }
+
+      .card-content p.active {
+        background: linear-gradient(90deg, rgba(255, 215, 0, 0.3), rgba(255, 237, 78, 0.3), rgba(255, 215, 0, 0.3));
+        animation: highlight-pulse 1.5s ease-in-out infinite;
+        font-weight: 600;
+        border: 3px solid #ffd700;
+        border-left-width: 6px;
+        transform: scale(1.02);
+        color: #fff;
+      }
+
+      .point-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin: 20px 0;
+        border: 3px solid rgba(255, 215, 0, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      /* === SUBSCRIBE SECTION === */
+      .subscribe {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        padding: 96px 20px;
+        border-radius: 80px 80px 0 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 -25px 50px rgba(0, 0, 0, 0.8), inset 0 0 100px rgba(255, 215, 0, 0.1);
+        margin-top: 80px;
+        border-top: 4px solid #ffd700;
+      }
+
+      .subscribe-content {
+        position: relative;
+        z-index: 10;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .mail-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 32px;
+        animation: bounce-subtle 3s infinite ease-in-out;
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+      }
+
+      .subscribe h2 {
+        font-size: 3rem;
+        font-weight: 900;
+        font-family: 'Playfair Display', serif;
+        color: #ffd700;
+        margin-bottom: 24px;
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.8);
+      }
+
+      .subscribe p {
+        font-size: 1.25rem;
+        color: #e8d7a3;
+        margin-bottom: 48px;
+        font-weight: 300;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
+
+      .subscribe-form {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .subscribe-input {
+        width: 100%;
+        max-width: 400px;
+        padding: 24px 32px;
+        font-size: 1.125rem;
+        border-radius: 9999px;
+        border: 3px solid #ffd700;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        color: #ffd700;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .subscribe-input::placeholder {
+        color: rgba(255, 215, 0, 0.5);
+      }
+
+      .subscribe-input:focus {
+        border-color: #ffed4e;
+        box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.4);
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .subscribe-btn {
+        padding: 24px 48px;
+        font-size: 1.125rem;
+        font-weight: 700;
+        border-radius: 9999px;
+        border: 3px solid #ffd700;
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        color: #000;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 215, 0, 0.3);
+      }
+
+      .subscribe-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.6);
+        background: linear-gradient(135deg, #ffed4e 0%, #ffd700 100%);
+      }
+
+      /* === FOOTER === */
+      .footer {
+        background: #000;
+        color: #ffd700;
+        text-align: center;
+        padding: 32px 20px;
+        border-top: 2px solid #ffd700;
+      }
+
+      .footer p {
+        margin: 0;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
+
+      /* === TOAST NOTIFICATION === */
+      .toast {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+        padding: 20px 32px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3);
+        z-index: 1000;
+        display: none;
+        animation: slide-up 0.3s ease-out;
+        border-left: 4px solid #ffd700;
+        border: 2px solid #ffd700;
+      }
+
+      .toast.show {
+        display: block;
+      }
+
+      .toast-title {
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: #ffd700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+
+      .toast-description {
+        font-size: 0.875rem;
+        color: #e8d7a3;
+      }
+
+      /* === RESPONSIVE === */
+      @media (max-width: 768px) {
+        .hero {
+          padding: 100px 16px 60px 16px;
+          border-bottom-left-radius: 50px;
+          border-bottom-right-radius: 50px;
+        }
+
+        .pastor-image {
+          width: 150px;
+          height: 150px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero h2 {
+          font-size: 1.25rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .logo {
+          width: 112px;
+          height: 112px;
+        }
+
+        .logo-text {
+          font-size: 2.25rem;
+        }
+
+        .btn {
+          padding: 20px 32px;
+          font-size: 1rem;
+        }
+
+        .card-image {
+          height: 200px;
+        }
+
+        .point-image {
+          height: 180px;
+        }
+
+        .card-header {
+          padding: 24px;
+        }
+
+        .card-header h2 {
+          font-size: 1.5rem;
+        }
+
+        .card-content {
+          padding: 24px;
+        }
+
+        .card-content p {
+          font-size: 1rem;
+          padding: 16px;
+        }
+
+        .subscribe {
+          padding: 64px 16px;
+          border-radius: 50px 50px 0 0;
+        }
+
+        .subscribe h2 {
+          font-size: 2rem;
+        }
+
+        .subscribe p {
+          font-size: 1rem;
+        }
+
+        .subscribe-form {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .subscribe-input {
+          max-width: 100%;
+        }
+
+        .subscribe-btn {
+          width: 100%;
+          max-width: 400px;
+        }
+
+        .mail-icon {
+          width: 64px;
+          height: 64px;
+        }
+
+        .toast {
+          left: 16px;
+          right: 16px;
+          bottom: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .card-header h2 {
+          font-size: 1.25rem;
+        }
+
+        .subscribe h2 {
+          font-size: 1.75rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+      <div class="toast-title" id="toast-title"></div>
+      <div class="toast-description" id="toast-description"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <!-- Floating Particles -->
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+
+      <div class="hero-content">
+        <!-- Pastor Image -->
+        <img src="{% static 'logo.jpg' %}" alt="Pastor Kingsley Chigozie Nwekwo" class="pastor-image">
+        
+        <!-- Main Heading -->
+        <h1>Glory Meal Devotional</h1>
+
+        <!-- Subtitle -->
+        <h2>5th October - Pastor Kingsley Chigozie Nwekwo</h2>
+
+        <!-- Scripture Reference -->
+        <p>"Reversing Delay and Activating Divine Speed (Part 6)"</p>
+
+        <!-- Play/Pause Button -->
+        <button id="play-btn" class="btn btn-primary" onclick="togglePlayPause()">
+          <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24" id="play-icon">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24" id="pause-icon" style="display: none;">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+          <span id="btn-text">Listen to Devotional</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Devotional Content -->
+    <main class="container">
+      <!-- Card 1: Wind of the Spirit -->
+      <div class="card" data-card="0">
+        <div class="card-header">
+          <h2>Wind of the Spirit - Scripture</h2>
+        </div>
+        <div class="card-content">
+          <p data-paragraph="0">Ezekiel 37:1-2: The hand of the LORD was upon me, and carried me out in the spirit of the LORD, and set me down in the midst of the valley which was full of bones, And caused me to pass by them round about: and, behold, there were very many in the open valley; and, lo, they were very dry.</p>
+          <p data-paragraph="1">Our anchor Scripture was a situation of hopelessness, despondency, and cataclysm. Then God began to move by the prophesying of Ezekiel. The wind of the Spirit brought life to the dry bones.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Benefits of Engaging the Four Winds -->
+      <div class="card" data-card="1">
+        <div class="card-header">
+          <h2>Benefits of Engaging the Four Winds</h2>
+        </div>
+        <div class="card-content">
+          <p data-paragraph="2"><strong>1) West Wind:</strong> Mercy and deliverance from the Spirit of delay. Example: Noah and the flood - Genesis 8:1. And God remembered Noah, and every living thing, and all the cattle that was with him in the ark: and God made a wind to pass over the earth, and the waters assuaged.</p>
+          
+          <p data-paragraph="3"><strong>2) East Wind:</strong> Judgement and vengeance against the Spirit of delay. Example: Pharaoh & Israelites - Exodus 14:21. And Moses stretched out his hand over the sea; and the LORD caused the sea to go back by a strong east wind all that night, and made the sea dry land, and the waters were divided.</p>
+          
+          <p data-paragraph="4"><strong>3) South Wind:</strong> Prosperity and abundance. Example: Quails for Israelites - Numbers 11:21,31. And Moses said, The people, among whom I am, are six hundred thousand footmen... And there went forth a wind from the LORD, and brought quails from the sea.</p>
+          
+          <p data-paragraph="5"><strong>4) North Wind:</strong> Divine Presence and Glory. Restores peace & favor. Song of Solomon 4:16 - Awake, O north wind; and come, thou south wind; blow upon my garden, that the spices thereof may flow out. Let my beloved come into his garden, and eat his pleasant fruits.</p>
+        </div>
+      </div>
+
+      <!-- Card 3: Prayer/Declaration -->
+      <div class="card" data-card="2">
+        <div class="card-header">
+          <h2>Prayer / Declaration</h2>
+        </div>
+        <div class="card-content">
+          <p data-paragraph="6">OH LORD, SEND YOUR WIND OF SPEED AND GLORY INTO MY LIFE, AND LET EVERY SPIRIT OF DELAY BE CAST OUT IN JESUS NAME!</p>
+          <p data-paragraph="7">Father, I decree and declare that divine acceleration is my portion. Every obstacle to my progress is removed by the power of the Holy Spirit.</p>
+          <p data-paragraph="8">I prophesy life into every dead situation in my life. Just as the dry bones came alive, so shall my dreams, visions, and aspirations come to life in Jesus' mighty name!</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Subscribe Section -->
+    <section class="subscribe">
+      <!-- Floating Particles -->
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+
+      <div class="subscribe-content">
+        <svg class="mail-icon" fill="#ffd700" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <h2>Stay Spiritually Connected</h2>
+        <p>Receive daily devotionals, prayers, and divine inspiration straight to your inbox every morning.</p>
+
+        <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+        {% csrf_token %}
+        <input 
+            type="email" 
+            class="subscribe-input" 
+            placeholder="Enter your email address"
+            id="email-input"
+            name="email"
+            required
+        />
+        <button type="submit" class="subscribe-btn">Subscribe Now</button>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 Embassy of God's Word Ministry. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // === STATE ===
+      let isPlaying = false;
+      let currentParagraphIndex = -1;
+      let synth = window.speechSynthesis;
+      let currentUtterance = null;
+
+      // Get all paragraphs
+      const allParagraphs = document.querySelectorAll('[data-paragraph]');
+      const playIcon = document.getElementById('play-icon');
+      const pauseIcon = document.getElementById('pause-icon');
+      const btnText = document.getElementById('btn-text');
+
+      // === TOAST FUNCTIONS ===
+      function showToast(title, description) {
+        const toast = document.getElementById('toast');
+        const toastTitle = document.getElementById('toast-title');
+        const toastDescription = document.getElementById('toast-description');
+
+        toastTitle.textContent = title;
+        toastDescription.textContent = description;
+        toast.classList.add('show');
+
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000);
+      }
+
+      // === SCROLL ANIMATION ===
+      const cards = document.querySelectorAll('.card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      cards.forEach(card => observer.observe(card));
+
+      // === TEXT-TO-SPEECH FUNCTIONS ===
+      function speakNextParagraph(index) {
+        if (index >= allParagraphs.length) {
+          isPlaying = false;
+          currentParagraphIndex = -1;
+          updatePlayButton();
+          return;
+        }
+
+        // Remove active class from all paragraphs
+        allParagraphs.forEach(p => p.classList.remove('active'));
+
+        // Add active class to current paragraph
+        currentParagraphIndex = index;
+        const currentParagraph = allParagraphs[index];
+        currentParagraph.classList.add('active');
+
+        // Scroll to current paragraph smoothly
+        currentParagraph.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+
+        // Create speech utterance
+        const text = currentParagraph.textContent;
+        currentUtterance = new SpeechSynthesisUtterance(text);
+        currentUtterance.rate = 0.85;
+        currentUtterance.pitch = 1.05;
+        currentUtterance.volume = 1;
+
+        currentUtterance.onend = function() {
+          setTimeout(() => {
+            if (isPlaying) {
+              speakNextParagraph(index + 1);
+            }
+          }, 800);
+        };
+
+        synth.speak(currentUtterance);
+      }
+
+      function updatePlayButton() {
+        if (isPlaying) {
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+          btnText.textContent = 'Pause Devotional';
+        } else {
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+          btnText.textContent = 'Listen to Devotional';
+        }
+      }
+
+      function togglePlayPause() {
+        if (!isPlaying) {
+          isPlaying = true;
+          updatePlayButton();
+          speakNextParagraph(0);
+          showToast('Starting devotional reading...', 'Listen as the Word comes alive');
+        } else {
+          isPlaying = false;
+          currentParagraphIndex = -1;
+          updatePlayButton();
+          
+          if (synth) {
+            synth.cancel();
+          }
+          
+          // Remove active class from all paragraphs
+          allParagraphs.forEach(p => p.classList.remove('active'));
+          
+          showToast('Devotional paused', 'Click play to continue');
+        }
+      }
+
+async function handleSubscribe(event) {
+  event.preventDefault();
+
+  const emailInput = document.getElementById('email-input');
+  const email = emailInput.value.trim();
+
+  if (!email) {
+    showToast('Error', 'Please enter a valid email');
+    return;
+  }
+
+  try {
+    const response = await fetch("{% url 'subscribe_email' %}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value
+      },
+      body: JSON.stringify({ email })
+    });
+
+    if (response.ok) {
+      showToast('Subscribed!', "You'll receive daily devotionals in your inbox");
+      emailInput.value = '';
+    } else {
+      // Read the error message from the server
+      let errorText;
+      try {
+        const data = await response.json(); // try parsing JSON
+        errorText = data.error || JSON.stringify(data);
+      } catch {
+        errorText = await response.text(); // fallback to plain text
+      }
+
+      console.error('Server Error:', errorText);
+      showToast('Error', `Something went wrong: ${errorText}`);
+    }
+  } catch (err) {
+    console.error('Network Error:', err);
+    showToast('Error', 'Network error. Try again.');
+  }
+}
+
+
+    </script>
+  </body>
+</html>
