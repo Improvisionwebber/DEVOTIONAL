@@ -131,13 +131,13 @@
         position: relative;
         background: linear-gradient(135deg, #000000 0%, #1a1a1a 40%, #2d2d2d 100%);
         color: #ffd700;
-        padding: 80px 20px 50px 20px;
+        padding: 10px 10px 10px 10px;
         text-align: center;
         border-bottom-left-radius: 80px;
         border-bottom-right-radius: 80px;
         box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 0 100px rgba(255, 215, 0, 0.1);
         overflow: hidden;
-        margin-bottom: 20px;
+        margin-bottom: 2px;
       }
 
       .hero::before {
@@ -156,8 +156,8 @@
       }
 
       .pastor-image {
-        width: 200px;
-        height: 200px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         object-fit: cover;
         border: 6px solid #ffd700;
@@ -177,7 +177,7 @@
         background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
         border: 4px solid #ffd700;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
-        margin-bottom: 32px;
+        margin-bottom: 2px;
         animation: pulse-glow 2s infinite ease-in-out;
       }
 
@@ -193,19 +193,20 @@
       }
 
       .hero h1 {
-        font-size: 3rem;
+        font-size: 1.5rem;
         font-weight: 900;
         font-family: 'Playfair Display', serif;
-        margin-bottom: 24px;
+        margin-top: 10px;
+        margin-bottom: 2px;
         color: #ffd700;
         text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.8);
         letter-spacing: -1px;
       }
 
       .hero h2 {
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: 600;
-        margin-bottom: 16px;
+        margin-bottom: 2px;
         color: #d4af37;
         opacity: 0.95;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
@@ -216,7 +217,7 @@
         font-style: italic;
         color: #e8d7a3;
         opacity: 0.9;
-        margin-bottom: 48px;
+        margin-bottom: 2px;
         font-weight: 300;
         text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
       }
@@ -244,8 +245,8 @@
         display: inline-flex;
         align-items: center;
         gap: 12px;
-        padding: 24px 48px;
-        font-size: 1.125rem;
+        padding: 14px 24px;
+        font-size: 0.7rem;
         font-weight: 700;
         border-radius: 9999px;
         border: 3px solid #ffd700;
@@ -637,6 +638,160 @@
           font-size: 1.75rem;
         }
       }
+      @media (max-width: 400px) {
+  .hero {
+    padding: 60px 12px 40px 12px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+
+  .pastor-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+
+  .hero h2 {
+    font-size: 0.9rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+
+  .btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .card-header h2 {
+    font-size: 1rem;
+  }
+
+  .card-content {
+    padding: 16px;
+  }
+
+  .card-content p {
+    font-size: 0.85rem;
+    padding: 12px;
+  }
+
+  .subscribe {
+    padding: 40px 12px;
+    border-radius: 30px 30px 0 0;
+  }
+
+  .subscribe h2 {
+    font-size: 1.25rem;
+  }
+
+  .subscribe p {
+    font-size: 0.9rem;
+  }
+
+  .subscribe-btn {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+  }
+
+  .mail-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+}
+/* === Container Flex === */
+.containerins {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* === Image Centered === */
+.imgpapa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgpapa img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #ffd700;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* === Install Button Wrapper === */
+.install {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Install Button === */
+#installBtn {
+  display: none; /* controlled by JS + mobile media query */
+  background: linear-gradient(135deg, #ffd700, #ffae00);
+  color: #000;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
+              0 0 30px rgba(255, 215, 0, 0.6);
+  animation: bloom 2s infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#installBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 1),
+              0 0 40px rgba(255, 215, 0, 0.9);
+}
+
+/* === Blooming Animation === */
+@keyframes bloom {
+  0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+  50% { box-shadow: 0 0 25px rgba(255, 215, 0, 1); }
+  100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+}
+
+/* === Mobile Only === */
+@media (max-width: 768px) {
+  .containerins {
+    flex-direction: column;
+  }
+  #installBtn {
+    display: inline-flex !important;
+    padding: 10px 18px;
+  }
+}
+
     </style>
   </head>
 
@@ -661,16 +816,19 @@
 
       <div class="hero-content">
         <!-- Pastor Image -->
-        <img src="{% static 'logo.jpg' %}" alt="Pastor Kingsley Chigozie Nwekwo" class="pastor-image">
+         <div class="containerins">
+          <div class="imgpapa"><img src="{% static 'papa.jpg' %}" alt="Pastor Kingsley Chigozie Nwekwo" class="pastor-image"></div>
+          <div class="install"><button id="installBtn" class="btn btn-primary" style="display: none;">📲 Install App</button></div>
+         </div>
         
         <!-- Main Heading -->
         <h1>Glory Meal Devotional</h1>
 
         <!-- Subtitle -->
-        <h2>5th October - Pastor Kingsley Chigozie Nwekwo</h2>
+        <h2>6th October - Pastor Kingsley Chigozie Nwekwo</h2>
 
         <!-- Scripture Reference -->
-        <p>"Reversing Delay and Activating Divine Speed (Part 6)"</p>
+        <p>"Reversing Delay and Activating Divine Speed (Part 7)"</p>
 
         <!-- Play/Pause Button -->
         <button id="play-btn" class="btn btn-primary" onclick="togglePlayPause()">
@@ -690,27 +848,35 @@
       <!-- Card 1: Wind of the Spirit -->
       <div class="card" data-card="0">
         <div class="card-header">
-          <h2>Wind of the Spirit - Scripture</h2>
+          <h2>NO HARD LABOUR - Scripture</h2>
         </div>
         <div class="card-content">
-          <p data-paragraph="0">Ezekiel 37:1-2: The hand of the LORD was upon me, and carried me out in the spirit of the LORD, and set me down in the midst of the valley which was full of bones, And caused me to pass by them round about: and, behold, there were very many in the open valley; and, lo, they were very dry.</p>
-          <p data-paragraph="1">Our anchor Scripture was a situation of hopelessness, despondency, and cataclysm. Then God began to move by the prophesying of Ezekiel. The wind of the Spirit brought life to the dry bones.</p>
+          <p data-paragraph="0">Exodous 1:19 (NIV):  The midwives answered Pharaoh, “Hebrew women are not like Egyptian women; they are vigorous and give birth before the midwives arrive.”</p>
+          <p data-paragraph="1">The pregnant Hebrew women delivered their children under grace and it was easy.When grace is available , birthing of vision comes with least suffering.</p>
+           <p data-paragraph="1"> Our Lord Jesus , is a yoke destroyer.I pray for you, Let every spell of hard labour fighting your high place in destiny, be destroy now in Jesus Name </p>
+           <p data-paragraph="1">For the sake of this message, let's consider a Biblical case of travailing under hard Labour ;Rachel delivered Benjamin under hard labour .</p>
+           <p data-paragraph="1">Genesis 35:16  And they journeyed from Beth–el; and there was but a little way to come to Ephrath: and Rachel travailed, and she had hard labour.</p>
+
         </div>
       </div>
 
       <!-- Card 2: Benefits of Engaging the Four Winds -->
       <div class="card" data-card="1">
         <div class="card-header">
-          <h2>Benefits of Engaging the Four Winds</h2>
+          <h2>Things to learn about Travailing   under hard labour ?</h2>
         </div>
         <div class="card-content">
-          <p data-paragraph="2"><strong>1) West Wind:</strong> Mercy and deliverance from the Spirit of delay. Example: Noah and the flood - Genesis 8:1. And God remembered Noah, and every living thing, and all the cattle that was with him in the ark: and God made a wind to pass over the earth, and the waters assuaged.</p>
+          <p data-paragraph="2"><strong>1) Travailing under Hard labour is a spirit of delay that births sorrow and pain while trying to birth destiny.</strong> Rachel  because of hard labour in child birth called her son:   "Ben- Oni" meaning son of sorrow.  Her good news was turned to her death sentence. Her celebration became her obituary announcement. When the delay became too extreme, good news is aborted. I pray for you, let every spirit of delay assigned to  bring sorrow to you be destroyed .</p>
           
-          <p data-paragraph="3"><strong>2) East Wind:</strong> Judgement and vengeance against the Spirit of delay. Example: Pharaoh & Israelites - Exodus 14:21. And Moses stretched out his hand over the sea; and the LORD caused the sea to go back by a strong east wind all that night, and made the sea dry land, and the waters were divided.</p>
+          <p data-paragraph="3"><strong>2)The spirit of Hard Labour  is  sponsored by evil satanic decree and curses.</strong>Racheal  was  ignorantly cursed to death by her loving husband , Jacob.Rachel stole her father's altar and was sitting on  altar of his father when Jacob came asking who is with it. He laid a curse on whoever is holding the altar. Rachel was the thief and she died for that strange fire involvement. .-Gen. 31:32 :</p>
           
-          <p data-paragraph="4"><strong>3) South Wind:</strong> Prosperity and abundance. Example: Quails for Israelites - Numbers 11:21,31. And Moses said, The people, among whom I am, are six hundred thousand footmen... And there went forth a wind from the LORD, and brought quails from the sea.</p>
+          <p data-paragraph="4"><strong>3) The mantle of  your spiritual father carries the power to turn the curse of hard labour to the blessing of favour.</strong>Jacob changed  his name from Ben- Oni( the Name Rachel called him)  to Benjamin,  meaning son of my right hand; son of favour and strength.-Gen 35:17.By the Mantle of God upon my life, Let every curse of delay and suffering on your life be destroy now in Jesus Name.Again, i speak blessing upon your life, Let every enemy of your favour expire by fire  in Jesus Name.</p>
           
-          <p data-paragraph="5"><strong>4) North Wind:</strong> Divine Presence and Glory. Restores peace & favor. Song of Solomon 4:16 - Awake, O north wind; and come, thou south wind; blow upon my garden, that the spices thereof may flow out. Let my beloved come into his garden, and eat his pleasant fruits.</p>
+          <p data-paragraph="5"><strong>4) Travailing in  Hard labour is the spirit of delay that pushes destiny into hopelessness, despondency and defeat </strong> Rachel died while trying to birth her child of  joy. She was cut short by excessive delay in childbirth.I pray for you, you will not die while birthing your vision of greatness.</p>
+          
+          <p data-paragraph="6"><strong>5) Travailing under hard labour  is the spirit of delay that manipulates men and women into closed heaven </strong>Rachel by her own evil choice of idol worship,  was between Bethel- the house of God and Ephrath- fruitfulness  but still died for lack of grace.She closed her heaven by her self. She frustrated grace. Rachel by her negative choice of worship, cut off the supply of divine help .I pray for mercy over you now, let every consequence of wrong choice against your life  be aborted in Jesus name.</p>
+          
+          <p data-paragraph="7"><strong>Note: </strong>The Mantle of the Prophet turns delay into celebration.</p>
         </div>
       </div>
 
@@ -720,9 +886,7 @@
           <h2>Prayer / Declaration</h2>
         </div>
         <div class="card-content">
-          <p data-paragraph="6">OH LORD, SEND YOUR WIND OF SPEED AND GLORY INTO MY LIFE, AND LET EVERY SPIRIT OF DELAY BE CAST OUT IN JESUS NAME!</p>
-          <p data-paragraph="7">Father, I decree and declare that divine acceleration is my portion. Every obstacle to my progress is removed by the power of the Holy Spirit.</p>
-          <p data-paragraph="8">I prophesy life into every dead situation in my life. Just as the dry bones came alive, so shall my dreams, visions, and aspirations come to life in Jesus' mighty name!</p>
+          <p data-paragraph="6">Oh Lord, let every Power of hard labour against my life scatter in Jesus Name.</p>
         </div>
       </div>
     </main>
@@ -960,6 +1124,37 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
         });
     });
 }
+  let deferredPrompt;
+  const installBtn = document.getElementById("installBtn");
+
+  // Listen for the beforeinstallprompt event
+  window.addEventListener("beforeinstallprompt", (e) => {
+    // Prevent the mini-infobar from appearing on mobile
+    e.preventDefault();
+    // Stash the event so it can be triggered later
+    deferredPrompt = e;
+    // Show the install button
+    installBtn.style.display = "inline-flex";
+  });
+
+  // Button click triggers install prompt
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt(); // Show install prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      // Reset deferredPrompt
+      deferredPrompt = null;
+      // Hide the button after install
+      installBtn.style.display = "none";
+    }
+  });
+
+  // Optional: Hide button if app is already installed
+  window.addEventListener("appinstalled", () => {
+    console.log("PWA was installed");
+    installBtn.style.display = "none";
+  });
 
     </script>
   </body>

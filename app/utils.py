@@ -10,10 +10,7 @@ def send_push_notification(title, body, url="/"):
         try:
             webpush(
                 subscription_info=subscription_info,
-                data=json.dumps({
-                    "Daily Devotional": title, 
-                    "The Devotional is now released": body, 
-                    "url": url}),
+                data=json.dumps({"title": title, "body": body, "url": url}),
                 vapid_private_key=settings.VAPID_PRIVATE_KEY,
                 vapid_claims={"sub": "mailto:you@example.com"}
             )
