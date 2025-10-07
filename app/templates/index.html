@@ -821,13 +821,13 @@
          </div>
         
         <!-- Main Heading -->
-        <h1>Glory Meal Devotional</h1>
+        <h1>Reversing Delay and Activating Divine Speed (Part 9)</h1>
 
         <!-- Subtitle -->
-        <h2>8th October - Pastor Kingsley Chigozie Nwekwo</h2>
+        <h2>ISSUES OF AFFLICTION</h2>
 
         <!-- Scripture Reference -->
-        <p>"Reversing Delay and Activating Divine Speed (Part 9)"</p>
+        <p>8th October - Pastor Kingsley Chigozie Nwekwo</p>
 
         <!-- Play/Pause Button -->
         <button id="play-btn" class="btn btn-primary" onclick="togglePlayPause()">
@@ -846,9 +846,6 @@
     <main class="container">
       <!-- Card 1: Wind of the Spirit -->
       <div class="card" data-card="0">
-        <div class="card-header">
-          <h2>NO DELAY BY ISSUES OF AFFLICTION</h2>
-        </div>
         <div class="card-content">
           <p data-paragraph="0">Mark 5:25-26,29 :  And a certain woman, which had an issue of blood twelve years, [26] And had suffered many things of many physicians, and had spent all that she had, and was nothing bettered, but rather grew worse.</p>
           <p data-paragraph="1">From our anchor Scriptures, it is clear that the forces of sickness, diseases and afflictions are manifestations of the spirit of delay and stagnation.</p>
@@ -1153,6 +1150,31 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
   window.addEventListener("appinstalled", () => {
     console.log("PWA was installed");
     installBtn.style.display = "none";
+  });
+  // Detect if the app is running as an installed PWA
+  const isInStandalone = window.matchMedia('(display-mode: standalone)').matches 
+    || window.navigator.standalone === true;
+
+  const installBtn = document.getElementById('installBtn');
+
+  // Hide install button if PWA is already installed
+  if (isInStandalone && installBtn) {
+    installBtn.style.display = 'none';
+  }
+
+  // Listen for install prompt only if not standalone
+  window.addEventListener('beforeinstallprompt', (e) => {
+    if (isInStandalone) return; // skip if already installed
+    e.preventDefault();
+    installBtn.style.display = 'inline-flex';
+    let deferredPrompt = e;
+    installBtn.addEventListener('click', () => {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => {
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    });
   });
 
     </script>
