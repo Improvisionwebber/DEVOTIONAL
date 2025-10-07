@@ -788,6 +788,51 @@
     padding: 10px 18px;
   }
 }
+/* === HERO HEADER RHYTHM === */
+.hero-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  text-align: center;
+  background: linear-gradient(90deg, #ffd700, #fff3b0, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-glow 3s ease-in-out infinite;
+  letter-spacing: 1px;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.3);
+
+}
+
+.hero-header span {
+  display: inline-block;
+  animation: floaty 4s ease-in-out infinite;
+}
+
+/* === Header Animation Glow === */
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.3);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 50px rgba(255, 255, 150, 0.9), 0 0 80px rgba(255, 215, 0, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+/* === Floating Word Rhythm === */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* === Responsive Adjust === */
+@media (max-width: 600px) {
+  .hero-header {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+}
 
     </style>
   </head>
@@ -810,12 +855,12 @@
       <div class="particle"></div>
       <div class="particle"></div>
       <div class="particle"></div>
-
       <div class="hero-content">
         <!-- Pastor Image -->
          <div class="containerins">
+          <header class="hero-header">GLORY MEAL DEVOTIONAL</header>
           <div class="imgpapa"><img src="{% static 'papa.jpg' %}" alt="Pastor Kingsley Chigozie Nwekwo" class="pastor-image"></div>
-          <div class="install"><button id="installBtn" class="btn btn-primary" style="display: none;">📲 Install App</button></div>
+          {% comment %} <div class="install"><button id="installBtn" class="btn btn-primary" style="display: none;">📲 Install App</button></div> {% endcomment %}
          </div>
         
         <!-- Main Heading -->
@@ -920,125 +965,125 @@
       <p>© 2025 Embassy of God's Word Ministry. All rights reserved.</p>
     </footer>
 
-    <script>
-      // === STATE ===
-      let isPlaying = false;
-      let currentParagraphIndex = -1;
-      let synth = window.speechSynthesis;
-      let currentUtterance = null;
+<script>
+// === WARM-UP VOICE (Fix slow start) ===
+function warmUpVoice() {
+  const u = new SpeechSynthesisUtterance("Initializing voice system.");
+  u.volume = 0;
+  speechSynthesis.speak(u);
+}
+window.onload = warmUpVoice;
 
-      // Get all paragraphs
-      const allParagraphs = document.querySelectorAll('[data-paragraph]');
-      const playIcon = document.getElementById('play-icon');
-      const pauseIcon = document.getElementById('pause-icon');
-      const btnText = document.getElementById('btn-text');
+// === STATE ===
+let isPlaying = false;
+let currentParagraphIndex = -1;
+let synth = window.speechSynthesis;
+let currentUtterance = null;
 
-      // === TOAST FUNCTIONS ===
-      function showToast(title, description) {
-        const toast = document.getElementById('toast');
-        const toastTitle = document.getElementById('toast-title');
-        const toastDescription = document.getElementById('toast-description');
+// Get all paragraphs
+const allParagraphs = document.querySelectorAll('[data-paragraph]');
+const playIcon = document.getElementById('play-icon');
+const pauseIcon = document.getElementById('pause-icon');
+const btnText = document.getElementById('btn-text');
 
-        toastTitle.textContent = title;
-        toastDescription.textContent = description;
-        toast.classList.add('show');
+// === TOAST ===
+function showToast(title, description) {
+  const toast = document.getElementById('toast');
+  const toastTitle = document.getElementById('toast-title');
+  const toastDescription = document.getElementById('toast-description');
 
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, 3000);
-      }
+  toastTitle.textContent = title;
+  toastDescription.textContent = description;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
 
-      // === SCROLL ANIMATION ===
-      const cards = document.querySelectorAll('.card');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
+// === SCROLL ANIMATION ===
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+cards.forEach(card => observer.observe(card));
 
-      cards.forEach(card => observer.observe(card));
+// === GET VOICE FUNCTION ===
+function getNigerianMaleVoice() {
+  const voices = synth.getVoices();
+  // Try matching African or Male English voices
+  return voices.find(v =>
+    /nigeria|africa|male|english|daniel|david|brian/i.test(v.name)
+  ) || voices[0];
+}
 
-      // === TEXT-TO-SPEECH FUNCTIONS ===
-      function speakNextParagraph(index) {
-        if (index >= allParagraphs.length) {
-          isPlaying = false;
-          currentParagraphIndex = -1;
-          updatePlayButton();
-          return;
-        }
+// === SPEAK FUNCTION ===
+function speakNextParagraph(index) {
+  if (index >= allParagraphs.length) {
+    isPlaying = false;
+    currentParagraphIndex = -1;
+    updatePlayButton();
+    return;
+  }
 
-        // Remove active class from all paragraphs
-        allParagraphs.forEach(p => p.classList.remove('active'));
+  allParagraphs.forEach(p => p.classList.remove('active'));
+  currentParagraphIndex = index;
+  const currentParagraph = allParagraphs[index];
+  currentParagraph.classList.add('active');
+  currentParagraph.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-        // Add active class to current paragraph
-        currentParagraphIndex = index;
-        const currentParagraph = allParagraphs[index];
-        currentParagraph.classList.add('active');
+  const text = currentParagraph.textContent;
+  currentUtterance = new SpeechSynthesisUtterance(text);
 
-        // Scroll to current paragraph smoothly
-        currentParagraph.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
+  // 🎙️ Clear Nigerian-style Male Voice Settings
+  currentUtterance.voice = getNigerianMaleVoice();
+  currentUtterance.rate = 0.88;   // calm speed
+  currentUtterance.pitch = 0.85;  // deep tone
+  currentUtterance.volume = 1.0;  // loud and clear
 
-        // Create speech utterance
-        const text = currentParagraph.textContent;
-        currentUtterance = new SpeechSynthesisUtterance(text);
-        currentUtterance.rate = 0.85;
-        currentUtterance.pitch = 1.05;
-        currentUtterance.volume = 1;
+  currentUtterance.onend = function() {
+    setTimeout(() => {
+      if (isPlaying) speakNextParagraph(index + 1);
+    }, 800);
+  };
 
-        currentUtterance.onend = function() {
-          setTimeout(() => {
-            if (isPlaying) {
-              speakNextParagraph(index + 1);
-            }
-          }, 800);
-        };
+  synth.speak(currentUtterance);
+}
 
-        synth.speak(currentUtterance);
-      }
+// === PLAY / PAUSE ===
+function updatePlayButton() {
+  if (isPlaying) {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'block';
+    btnText.textContent = 'Pause Devotional';
+  } else {
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+    btnText.textContent = 'Listen to Devotional';
+  }
+}
 
-      function updatePlayButton() {
-        if (isPlaying) {
-          playIcon.style.display = 'none';
-          pauseIcon.style.display = 'block';
-          btnText.textContent = 'Pause Devotional';
-        } else {
-          playIcon.style.display = 'block';
-          pauseIcon.style.display = 'none';
-          btnText.textContent = 'Listen to Devotional';
-        }
-      }
+function togglePlayPause() {
+  if (!isPlaying) {
+    isPlaying = true;
+    updatePlayButton();
+    speakNextParagraph(0);
+    showToast('Starting devotional...', 'Listen as the Word comes alive');
+  } else {
+    isPlaying = false;
+    currentParagraphIndex = -1;
+    updatePlayButton();
+    synth.cancel();
+    allParagraphs.forEach(p => p.classList.remove('active'));
+    showToast('Devotional paused', 'Click play to continue');
+  }
+}
 
-      function togglePlayPause() {
-        if (!isPlaying) {
-          isPlaying = true;
-          updatePlayButton();
-          speakNextParagraph(0);
-          showToast('Starting devotional reading...', 'Listen as the Word comes alive');
-        } else {
-          isPlaying = false;
-          currentParagraphIndex = -1;
-          updatePlayButton();
-          
-          if (synth) {
-            synth.cancel();
-          }
-          
-          // Remove active class from all paragraphs
-          allParagraphs.forEach(p => p.classList.remove('active'));
-          
-          showToast('Devotional paused', 'Click play to continue');
-        }
-      }
-
+// === EMAIL SUBSCRIBE ===
 async function handleSubscribe(event) {
   event.preventDefault();
-
   const emailInput = document.getElementById('email-input');
   const email = emailInput.value.trim();
 
@@ -1061,135 +1106,60 @@ async function handleSubscribe(event) {
       showToast('Subscribed!', "You'll receive daily devotionals in your inbox");
       emailInput.value = '';
     } else {
-      // Read the error message from the server
-      let errorText;
-      try {
-        const data = await response.json(); // try parsing JSON
-        errorText = data.error || JSON.stringify(data);
-      } catch {
-        errorText = await response.text(); // fallback to plain text
-      }
-
-      console.error('Server Error:', errorText);
-      showToast('Error', `Something went wrong: ${errorText}`);
+      const data = await response.json().catch(() => null);
+      const errorText = data?.error || 'Server returned an error';
+      showToast('Error', errorText);
     }
   } catch (err) {
-    console.error('Network Error:', err);
-    showToast('Error', 'Network error. Try again.');
+    console.error(err);
+    showToast('Error', 'Network issue. Try again.');
   }
 }
 
+// === PWA SERVICE WORKER ===
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register("{% static 'service-worker.js' %}")
+  navigator.serviceWorker.register("{% static 'service-worker.js' %}")
     .then(reg => console.log('Service Worker registered', reg))
     .catch(err => console.log('Service Worker failed', err));
 }
-// Helper function to convert VAPID key
+
+// === PUSH NOTIFICATION ===
 function urlBase64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-    const rawData = window.atob(base64);
-    return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  return Uint8Array.from([...rawData].map(c => c.charCodeAt(0)));
 }
 
-// Register service worker and subscribe
 if ('serviceWorker' in navigator && 'PushManager' in window) {
-    navigator.serviceWorker.register('/static/service-worker.js')
-    .then(registration => {
-        console.log("Service Worker registered");
-
-        Notification.requestPermission().then(permission => {
-            if (permission === "granted") {
-                console.log("Notifications allowed!");
-
-                registration.pushManager.subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array("BHwZt2eshi_7444oqiSmssO5n9O71wbNg7h-tqeNdWUadjEYiI62RQQtm0EiUxilYmNhX-MjYtsYz4xBbjML5jc")
-                }).then(subscription => {
-                    // Send subscription to Django
-                    fetch("/save-subscription/", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(subscription)
-                    });
-                    console.log("Subscribed to push notifications!");
-                }).catch(err => console.error("Subscription failed:", err));
-            }
-        });
+  navigator.serviceWorker.register('/static/service-worker.js').then(registration => {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array("BHwZt2eshi_7444oqiSmssO5n9O71wbNg7h-tqeNdWUadjEYiI62RQQtm0EiUxilYmNhX-MjYtsYz4xBbjML5jc")
+        }).then(subscription => {
+          fetch("/save-subscription/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(subscription)
+          });
+        }).catch(err => console.error("Push subscription failed:", err));
+      }
     });
+  });
 }
-  let deferredPrompt;
-  const installBtn = document.getElementById("installBtn");
 
-  // Listen for the beforeinstallprompt event
-  window.addEventListener("beforeinstallprompt", (e) => {
-    // Prevent the mini-infobar from appearing on mobile
-    e.preventDefault();
-    // Stash the event so it can be triggered later
-    deferredPrompt = e;
-    // Show the install button
-    installBtn.style.display = "inline-flex";
-  });
-
-  // Button click triggers install prompt
-  installBtn.addEventListener("click", async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt(); // Show install prompt
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log(`User response to the install prompt: ${outcome}`);
-      // Reset deferredPrompt
-      deferredPrompt = null;
-      // Hide the button after install
-      installBtn.style.display = "none";
-    }
-  });
-
-  // Optional: Hide button if app is already installed
-  window.addEventListener("appinstalled", () => {
-    console.log("PWA was installed");
-    installBtn.style.display = "none";
-  });
-  // Detect if the app is running as an installed PWA
-  const isInStandalone = window.matchMedia('(display-mode: standalone)').matches 
-    || window.navigator.standalone === true;
-
-  const installBtn = document.getElementById('installBtn');
-
-  // Hide install button if PWA is already installed
-  if (isInStandalone && installBtn) {
-    installBtn.style.display = 'none';
-  }
-
-  // Listen for install prompt only if not standalone
-  window.addEventListener('beforeinstallprompt', (e) => {
-    if (isInStandalone) return; // skip if already installed
-    e.preventDefault();
-    installBtn.style.display = 'inline-flex';
-    let deferredPrompt = e;
-    installBtn.addEventListener('click', () => {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(() => {
-        deferredPrompt = null;
-        installBtn.style.display = 'none';
-      });
-    });
-  });
+// === INSTALL PWA ===
 const installBtn = document.getElementById("installBtn");
-
-// Detect if running as PWA
-const isPWA =
-  window.matchMedia("(display-mode: standalone)").matches ||
-  window.navigator.standalone === true; // for iOS Safari
+const isPWA = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
 
 if (isPWA) {
-  // Already installed — hide button
   installBtn.style.display = "none";
 } else {
-  // Show install button only when prompt event fires
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     installBtn.style.display = "inline-flex";
-
     installBtn.addEventListener("click", async () => {
       event.prompt();
       const { outcome } = await event.userChoice;
@@ -1200,6 +1170,12 @@ if (isPWA) {
   });
 }
 
-    </script>
+// === LOAD VOICES FIX ===
+speechSynthesis.onvoiceschanged = () => {
+  getNigerianMaleVoice(); // preselect once voices are loaded
+};
+
+</script>
+
   </body>
 </html>
