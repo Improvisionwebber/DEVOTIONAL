@@ -298,13 +298,11 @@
         overflow: hidden;
         transition: all 0.5s ease;
         border: 2px solid rgba(255, 215, 0, 0.2);
-        opacity: 0;
-        transform: translateY(30px);
       }
 
-      .card.visible {
+      {% comment %} .card.visible {
         animation: slide-up 0.6s ease-out forwards;
-      }
+      } {% endcomment %}
 
       .card:hover {
         transform: translateY(-8px);
@@ -1176,6 +1174,31 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
       });
     });
   });
+const installBtn = document.getElementById("installBtn");
+
+// Detect if running as PWA
+const isPWA =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true; // for iOS Safari
+
+if (isPWA) {
+  // Already installed — hide button
+  installBtn.style.display = "none";
+} else {
+  // Show install button only when prompt event fires
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installBtn.style.display = "inline-flex";
+
+    installBtn.addEventListener("click", async () => {
+      event.prompt();
+      const { outcome } = await event.userChoice;
+      if (outcome === "accepted") {
+        installBtn.style.display = "none";
+      }
+    });
+  });
+}
 
     </script>
   </body>
